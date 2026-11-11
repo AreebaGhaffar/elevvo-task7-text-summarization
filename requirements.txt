@@ -4,6 +4,7 @@
 #   pip install torch --index-url https://download.pytorch.org/whl/cpu
 torch>=2.0
 transformers==4.57.1  # v5 removed the summarization pipeline; pin to 4.x (same as Task 6)
+accelerate>=0.26.0  # required by the transformers Trainer (fine-tuning demo)
 pandas>=2.0
 numpy>=1.26
 rouge-score>=0.1.2  # ROUGE-1 / ROUGE-2 / ROUGE-L evaluation
