@@ -49,8 +49,7 @@ def main() -> None:
 
     lines = ["# Model comparison\n"]
     lines.append("All models were evaluated on the same test subset — the first 50 "
-                 "test articles — except Pegasus, which was evaluated on the first "
-                 "20 (28 s/article on CPU, so 50 would have taken ~25 min).\n")
+                 "test articles.\n")
     lines.append("| Model | Type | n | ROUGE-1 | ROUGE-2 | ROUGE-L | s/article |")
     lines.append("|---|---|---|---|---|---|---|")
     for _, r in df.iterrows():
@@ -61,11 +60,10 @@ def main() -> None:
     lines.append("## Reading the results")
     lines.append("")
     lines.append("- All scores are ROUGE F1 (stemmed) against the reference highlights.")
-    lines.append("- Pegasus leads on ROUGE-1 (0.3645) and ROUGE-L (0.2609), but it was "
-                 "scored on only the first 20 articles, so its numbers are not "
-                 "strictly comparable to the n=50 rows; BART-large leads on ROUGE-2 "
-                 "(0.1603) among the n=50 models, and is the best overall choice "
-                 "when speed matters too (20.9 s/article vs Pegasus 28.0).")
+    lines.append("- Pegasus leads on ROUGE-1 (0.3566) on the same first 50 articles "
+                 "as the other models; BART-large leads on ROUGE-2 (0.1603) and "
+                 "ROUGE-L (0.2603), and is the best overall choice when speed "
+                 "matters too (20.9 s/article vs Pegasus 28.6).")
     lines.append("- DistilBART is close behind BART-large on every metric (ROUGE-1 "
                  "0.3440 vs 0.3492) at ~1.5x the speed, and T5-small is the "
                  "lightest model (ROUGE-1 0.3242) — but its 511-token input limit "

@@ -67,14 +67,14 @@ Pegasus, 511 for T5-small — so long documents never overflow the encoder.
 to exactly 1024 crashed with an `index out of range` in the positional
 embedding.)
 
-## Results (ROUGE F1, stemmed, first 50 test articles unless noted)
+## Results (ROUGE F1, stemmed, first 50 test articles)
 
 | Model | Type | n | ROUGE-1 | ROUGE-2 | ROUGE-L | s/article |
 |---|---|---|---|---|---|---|
 | BART-large-CNN | abstractive | 50 | 0.3492 | 0.1603 | 0.2603 | 20.9 |
 | DistilBART-CNN-12-6 | abstractive | 50 | 0.3440 | 0.1530 | 0.2557 | 13.9 |
 | T5-small | abstractive | 50 | 0.3242 | 0.1291 | 0.2375 | 3.8 |
-| Pegasus-CNN/DailyMail | abstractive | 20 | 0.3645 | 0.1544 | 0.2609 | 28.0 |
+| Pegasus-CNN/DailyMail | abstractive | 50 | 0.3566 | 0.1552 | 0.2550 | 28.6 |
 | Lead-3 (first 3 sentences) | extractive | 50 | 0.2978 | 0.1265 | 0.2170 | — |
 | TextRank | extractive | 50 | 0.2335 | 0.0740 | 0.1623 | — |
 
@@ -82,12 +82,11 @@ Full table and reading notes: `results/comparison.md`;
 per-model details: `results/evaluation_*.json` / `.csv`;
 combined: `results/all_evaluations.csv`.
 
-**Reading the results:** Pegasus leads on ROUGE-1 and ROUGE-L, but on only
-the first 20 articles, so it is not strictly comparable to the n=50 rows.
-Among the n=50 models BART-large leads on every metric and is the best
-overall choice; DistilBART is close behind at ~1.5x the speed, and
-T5-small is the lightest and fastest (3.8 s/article) but its 511-token
-limit truncated 35 of 50 articles. Lead-3 beats TextRank — news articles
+**Reading the results:** Pegasus leads on ROUGE-1 (0.3566) on the same
+first 50 articles as the other models. BART-large leads on ROUGE-2 and
+ROUGE-L and is the best overall choice; DistilBART is close behind at
+~1.5x the speed, and T5-small is the lightest and fastest
+(3.8 s/article) but its 511-token limit truncated 35 of 50 articles. Lead-3 beats TextRank — news articles
 front-load the key facts. All scores are in line with published
 CNN/DailyMail results for these checkpoints (e.g. BART-large ~0.44
 ROUGE-1 on the full test set with the standard 1024-token / beam-4
@@ -133,10 +132,9 @@ results/              exploration summary, evaluation JSONs/CSVs, comparison,
 
 ## Limitations
 
-- All evaluations use small subsets (n=50, Pegasus n=20) because
-  generation on CPU takes 4–28 s per article; treat the numbers as
+- All evaluations use small subsets (n=50) because
+  generation on CPU takes 4–29 s per article; treat the numbers as
   same-subset comparisons, not full-test-set scores.
-- Pegasus was evaluated on fewer articles for the same reason.
 - Models, data and fine-tuned checkpoints are not in the repo
   (gitignored, ~6 GB); re-download with the scripts above.
 - Summaries are extractive-leaning and can miss facts from the tail of
@@ -144,6 +142,6 @@ results/              exploration summary, evaluation JSONs/CSVs, comparison,
 
 ## Git history
 
-9 commits on `master`, one per step (dataset → pipeline → T5 eval →
+10 commits on `master`, one per step (dataset → pipeline → T5 eval →
 DistilBART eval → comparison → extractive → fine-tune demo → CLI/Streamlit
-→ README). See `git log --oneline`.
+→ README → Pegasus full-50 eval). See `git log --oneline`.
