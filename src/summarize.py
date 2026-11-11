@@ -25,11 +25,15 @@ from transformers import pipeline
 
 torch.set_num_threads(2)
 
-# Model input limits (encoder tokens). Articles longer than this are truncated.
+# Model input limits (encoder tokens, *excluding* special tokens).
+# BART/Pegasus add BOS+EOS (2 tokens) and their learned positional
+# embeddings only cover 1024 positions, so a 1024-token input would crash
+# with "index out of range" in the positional embedding — hence 1022.
+# T5 adds only EOS (1 token) and uses relative positions, hence 511.
 MAX_INPUT_TOKENS = {
-    "bart": 1024,
-    "pegasus": 1024,
-    "t5": 512,
+    "bart": 1022,
+    "pegasus": 1022,
+    "t5": 511,
 }
 
 # Default generation lengths (in summary tokens). CNN/DM highlights average

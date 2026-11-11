@@ -1,0 +1,19 @@
+{
+  "model": "models/sshleifer/distilbart-cnn-12-6",
+  "family": "bart",
+  "n_examples": 50,
+  "csv": "results/test_sample_100.csv",
+  "offset": 0,
+  "rouge1_f1": 0.344,
+  "rouge2_f1": 0.153,
+  "rougeL_f1": 0.2557,
+  "rouge1_precision": 0.28,
+  "rouge1_recall": 0.4683,
+  "rouge2_precision": 0.1247,
+  "rouge2_recall": 0.21,
+  "rougeL_precision": 0.2076,
+  "rougeL_recall": 0.3503,
+  "elapsed_seconds": 694.8,
+  "seconds_per_article": 13.9,
+  "n_truncated": 13
+}
