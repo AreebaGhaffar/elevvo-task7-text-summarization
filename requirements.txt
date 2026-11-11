@@ -1,0 +1,15 @@
+# Task 7 — Text Summarization Using Pre-trained Models (CPU)
+# Install:  python -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt
+# torch CPU wheel is large (~200 MB); install it first if needed:
+#   pip install torch --index-url https://download.pytorch.org/whl/cpu
+torch>=2.0
+transformers==4.57.1  # v5 removed the summarization pipeline; pin to 4.x (same as Task 6)
+pandas>=2.0
+numpy>=1.26
+rouge-score>=0.1.2  # ROUGE-1 / ROUGE-2 / ROUGE-L evaluation
+streamlit>=1.30
+sentencepiece>=0.2  # needed for T5 / Pegasus tokenizers
+nltk>=3.8  # sentence tokenization (preprocessing + TextRank)
+sumy>=0.11  # TextRank extractive summarization
+scikit-learn>=1.3
+datasets>=2.14  # CNN/DailyMail from Hugging Face (fallback / alternative source)

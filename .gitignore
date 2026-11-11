@@ -1,0 +1,15 @@
+# Downloaded data (re-download with python download_data.py)
+data/
+# Downloaded model checkpoints (re-download with python download_models.py)
+models/
+# Fine-tuning / generation outputs
+outputs/
+# Virtual environment and HF cache
+.venv/
+.hf_cache/
+# Python
+__pycache__/
+*.pyc
+*.pyo
+# Streamlit
+.streamlit/
