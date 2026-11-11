@@ -1,0 +1,10 @@
+{
+  "model": "textrank",
+  "family": "extractive",
+  "n_examples": 50,
+  "n_sentences": 3,
+  "rouge1_f1": 0.2335,
+  "rouge2_f1": 0.074,
+  "rougeL_f1": 0.1623,
+  "elapsed_seconds": 3.3
+}

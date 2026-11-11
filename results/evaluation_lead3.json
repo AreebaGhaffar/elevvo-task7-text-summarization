@@ -1,0 +1,10 @@
+{
+  "model": "lead3",
+  "family": "extractive",
+  "n_examples": 50,
+  "n_sentences": 3,
+  "rouge1_f1": 0.2978,
+  "rouge2_f1": 0.1265,
+  "rougeL_f1": 0.217,
+  "elapsed_seconds": 0.2
+}
