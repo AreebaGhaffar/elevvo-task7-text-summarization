@@ -1,0 +1,54 @@
+Device set to use cpu
+
+Model: models/facebook/bart-large-cnn
+Input: 567 words
+
+Summary (51 words):
+The Palestinian Authority becomes the 123rd member of the International Criminal Court. The move gives the court jurisdiction over alleged crimes in Palestinian territories. Israel and the United States opposed the Palestinians' efforts to join the body. But Palestinian Foreign Minister Riad al-Malki said it was a move toward greater justice.
+
+ROUGE vs reference:
+  rouge1: F1 0.4419 (P 0.3654, R 0.5588)
+  rouge2: F1 0.3095 (P 0.2549, R 0.3939)
+  rougeL: F1 0.3953 (P 0.3269, R 0.5000)
+
+Reference:
+Membership gives the ICC jurisdiction over alleged crimes committed in Palestinian territories since last June .
+Israel and the United States opposed the move, which could open the door to war crimes investigations against Israelis .
+
+===== T5-small, example 2 =====
+
+Model: models/google-t5/t5-small
+Input: 411 words
+
+Summary (38 words):
+theia is a friendly white-and-black bully breed mix in washington state . she was found by a worker who took her to a vet for help . the dog's brush with death did not leave her unscathed .
+
+[note: input truncated from 578 to 511 tokens — the model's limit]
+
+ROUGE vs reference:
+  rouge1: F1 0.4444 (P 0.4737, R 0.4186)
+  rouge2: F1 0.0759 (P 0.0811, R 0.0714)
+  rougeL: F1 0.2716 (P 0.2895, R 0.2558)
+
+Reference:
+Theia, a bully breed mix, was apparently hit by a car, whacked with a hammer and buried in a field .
+"She's a true miracle dog and she deserves a good life," says Sara Mellado, who is looking for a home for Theia .
+
+===== Fine-tuned T5-small (200 articles, 1 epoch), example 1 =====
+
+Model: outputs/finetuned-t5-small-demo
+Input: 567 words
+
+Summary (41 words):
+the Palestinian Authority officially became the 123rd member of the international Criminal Court . the ICC opened a preliminary examination into the situation in Palestinian territories . Israel and the united states opposed the Palestinians' efforts to join the body .
+
+[note: input truncated from 786 to 511 tokens — the model's limit]
+
+ROUGE vs reference:
+  rouge1: F1 0.4167 (P 0.3947, R 0.4412)
+  rouge2: F1 0.2571 (P 0.2432, R 0.2727)
+  rougeL: F1 0.3611 (P 0.3421, R 0.3824)
+
+Reference:
+Membership gives the ICC jurisdiction over alleged crimes committed in Palestinian territories since last June .
+Israel and the United States opposed the move, which could open the door to war crimes investigations against Israelis .
