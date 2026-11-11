@@ -1,0 +1,19 @@
+{
+  "model": "models/google/pegasus-cnn_dailymail",
+  "family": "pegasus",
+  "n_examples": 20,
+  "csv": "results/test_sample_100.csv",
+  "offset": 0,
+  "rouge1_f1": 0.3645,
+  "rouge2_f1": 0.1544,
+  "rougeL_f1": 0.2609,
+  "rouge1_precision": 0.3143,
+  "rouge1_recall": 0.4555,
+  "rouge2_precision": 0.1335,
+  "rouge2_recall": 0.193,
+  "rougeL_precision": 0.2251,
+  "rougeL_recall": 0.3265,
+  "elapsed_seconds": 560.4,
+  "seconds_per_article": 28.02,
+  "n_truncated": 4
+}

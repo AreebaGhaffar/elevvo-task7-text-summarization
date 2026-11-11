@@ -1,0 +1,19 @@
+{
+  "model": "models/facebook/bart-large-cnn",
+  "family": "bart",
+  "n_examples": 50,
+  "csv": "results/test_sample_100.csv",
+  "offset": 0,
+  "rouge1_f1": 0.3492,
+  "rouge2_f1": 0.1603,
+  "rougeL_f1": 0.2603,
+  "rouge1_precision": 0.2879,
+  "rouge1_recall": 0.4706,
+  "rouge2_precision": 0.1292,
+  "rouge2_recall": 0.2247,
+  "rougeL_precision": 0.2123,
+  "rougeL_recall": 0.3559,
+  "elapsed_seconds": 1045.6,
+  "seconds_per_article": 20.91,
+  "n_truncated": 13
+}

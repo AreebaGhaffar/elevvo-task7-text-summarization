@@ -41,11 +41,16 @@ def main() -> None:
             "elapsed_seconds": d.get("elapsed_seconds"),
         })
     df = pd.DataFrame(rows)
-    df["order"] = df["model"].apply(lambda m: ORDER.index(m) if m in ORDER else 99)
+    df["order"] = df["model"].apply(
+        lambda m: ORDER.index(m.replace("models/", "")) if m.replace("models/", "") in ORDER else 99
+    )
     df = df.sort_values(["order", "model"]).drop(columns="order")
     df.to_csv(RESULTS / "comparison.csv", index=False)
 
-    lines = ["# Model comparison (same test subset: first 50 test articles)\n"]
+    lines = ["# Model comparison\n"]
+    lines.append("All models were evaluated on the same test subset — the first 50 "
+                 "test articles — except Pegasus, which was evaluated on the first "
+                 "20 (28 s/article on CPU, so 50 would have taken ~25 min).\n")
     lines.append("| Model | Type | n | ROUGE-1 | ROUGE-2 | ROUGE-L | s/article |")
     lines.append("|---|---|---|---|---|---|---|")
     for _, r in df.iterrows():
@@ -56,10 +61,15 @@ def main() -> None:
     lines.append("## Reading the results")
     lines.append("")
     lines.append("- All scores are ROUGE F1 (stemmed) against the reference highlights.")
-    lines.append("- BART-large-CNN is the standard CNN/DailyMail checkpoint and is "
-                 "expected to lead; DistilBART trades a little ROUGE for ~2x speed; "
-                 "T5-small is the lightest model and its 512-token input limit means "
-                 "it sees less of each article.")
+    lines.append("- Pegasus leads on ROUGE-1 (0.3645) and ROUGE-L (0.2609), but it was "
+                 "scored on only the first 20 articles, so its numbers are not "
+                 "strictly comparable to the n=50 rows; BART-large leads on ROUGE-2 "
+                 "(0.1603) among the n=50 models, and is the best overall choice "
+                 "when speed matters too (20.9 s/article vs Pegasus 28.0).")
+    lines.append("- DistilBART is close behind BART-large on every metric (ROUGE-1 "
+                 "0.3440 vs 0.3492) at ~1.5x the speed, and T5-small is the "
+                 "lightest model (ROUGE-1 0.3242) — but its 511-token input limit "
+                 "truncated 35 of 50 articles, so it sees less of each article.")
     lines.append("- TextRank and Lead-3 are extractive: they copy sentences from the "
                  "article instead of generating new text. Lead-3 is a famously strong "
                  "baseline on news, because articles front-load the key facts.")
