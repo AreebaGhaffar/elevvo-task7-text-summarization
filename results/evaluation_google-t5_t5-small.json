@@ -1,0 +1,19 @@
+{
+  "model": "models/google-t5/t5-small",
+  "family": "t5",
+  "n_examples": 50,
+  "csv": "results/test_sample_100.csv",
+  "offset": 0,
+  "rouge1_f1": 0.3242,
+  "rouge2_f1": 0.1291,
+  "rougeL_f1": 0.2375,
+  "rouge1_precision": 0.3037,
+  "rouge1_recall": 0.3718,
+  "rouge2_precision": 0.1225,
+  "rouge2_recall": 0.1479,
+  "rougeL_precision": 0.2231,
+  "rougeL_recall": 0.2714,
+  "elapsed_seconds": 192.2,
+  "seconds_per_article": 3.84,
+  "n_truncated": 35
+}
